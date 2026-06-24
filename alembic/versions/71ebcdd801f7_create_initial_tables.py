@@ -5,11 +5,15 @@ Revises:
 Create Date: 2026-06-24 12:02:32.758226
 
 """
-from collections.abc import Sequence
+
+from typing import TYPE_CHECKING
 
 import sqlalchemy as sa
 
 from alembic import op
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
 
 # revision identifiers, used by Alembic.
 revision: str = '71ebcdd801f7'
