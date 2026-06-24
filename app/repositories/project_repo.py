@@ -19,7 +19,10 @@ class ProjectRepository:
         return project
 
     async def get_by_id(self, project_id: int) -> TravelProject | None:
-        result = await self.db.execute(select(TravelProject).where(TravelProject.id == project_id))
+        result = await self.db.execute(
+            select(TravelProject)
+            .where(TravelProject.id == project_id)
+        )
         return result.scalar_one_or_none()
 
     async def get_by_id_for_user(
@@ -54,7 +57,9 @@ class ProjectRepository:
 
     async def list_by_user(self, user_id: int) -> list[TravelProject]:
         result = await self.db.execute(
-            select(TravelProject).where(TravelProject.user_id == user_id).order_by(TravelProject.created_at.desc())
+            select(TravelProject)
+            .where(TravelProject.user_id == user_id)
+            .order_by(TravelProject.created_at.desc())
         )
         return list(result.scalars().all())
 
@@ -99,3 +104,4 @@ class ProjectRepository:
         await self.db.refresh(project)
 
         return project
+

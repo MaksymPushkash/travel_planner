@@ -251,3 +251,60 @@ Example artwork ID for testing:
 ```text
 129884
 ```
+
+## Screenshots
+
+### Swagger API Documentation
+
+![Swagger API Documentation](screenshots/swagger_api_documentation.png)
+
+### Users Table
+
+![Users Table](screenshots/user_table.png)
+
+### Travel Projects Table
+
+![Travel Projects Table](screenshots/travel_projects_table.png)
+
+### Project Places Table
+
+![Project Places Table](screenshots/project_places_table.png)
+
+## Database Schema
+
+```mermaid
+erDiagram
+    USERS ||--o{ TRAVEL_PROJECTS : owns
+    TRAVEL_PROJECTS ||--o{ PROJECT_PLACES : contains
+
+    USERS {
+        int id PK
+        string email UK
+        string password_hash
+        datetime created_at
+    }
+
+    TRAVEL_PROJECTS {
+        int id PK
+        int user_id FK
+        string name
+        text description
+        date start_date
+        boolean is_completed
+        datetime created_at
+        datetime updated_at
+    }
+
+    PROJECT_PLACES {
+        int id PK
+        int project_id FK
+        int external_place_id
+        string title
+        string artist_title
+        string image_url
+        text notes
+        boolean is_visited
+        datetime created_at
+        datetime updated_at
+    }
+```

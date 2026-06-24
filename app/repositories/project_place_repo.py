@@ -17,7 +17,10 @@ class ProjectPlaceRepository:
         return place
 
     async def get_by_id(self, place_id: int) -> ProjectPlace | None:
-        result = await self.db.execute(select(ProjectPlace).where(ProjectPlace.id == place_id))
+        result = await self.db.execute(
+            select(ProjectPlace)
+            .where(ProjectPlace.id == place_id)
+        )
         return result.scalar_one_or_none()
 
     async def get_by_id_for_project(
@@ -36,12 +39,17 @@ class ProjectPlaceRepository:
 
     async def list_by_project(self, project_id: int) -> list[ProjectPlace]:
         result = await self.db.execute(
-            select(ProjectPlace).where(ProjectPlace.project_id == project_id).order_by(ProjectPlace.created_at.desc())
+            select(ProjectPlace)
+            .where(ProjectPlace.project_id == project_id)
+            .order_by(ProjectPlace.created_at.desc())
         )
         return list(result.scalars().all())
 
     async def count_by_project(self, project_id: int) -> int:
-        result = await self.db.execute(select(func.count(ProjectPlace.id)).where(ProjectPlace.project_id == project_id))
+        result = await self.db.execute(
+            select(func.count(ProjectPlace.id))
+            .where(ProjectPlace.project_id == project_id)
+        )
         return result.scalar_one()
 
     async def exists_by_external_id(
@@ -76,7 +84,8 @@ class ProjectPlaceRepository:
 
     async def all_places_visited(self, project_id: int) -> bool:
         total_result = await self.db.execute(
-            select(func.count(ProjectPlace.id)).where(ProjectPlace.project_id == project_id)
+            select(func.count(ProjectPlace.id))
+            .where(ProjectPlace.project_id == project_id)
         )
         total_places = total_result.scalar_one()
 
