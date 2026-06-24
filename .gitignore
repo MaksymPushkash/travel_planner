@@ -9,3 +9,22 @@ wheels/
 # Virtual environments
 .venv
 .env
+
+
+.mypy_cache/
+.ruff_cache/
+
+
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+
+
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
