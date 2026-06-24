@@ -4,7 +4,7 @@ Simple FastAPI application for managing travel projects and places from the Art 
 
 ## Tech Stack
 
-* Python
+* Python3.14
 * FastAPI
 * PostgreSQL / PgAdmin
 * SQLAlchemy
