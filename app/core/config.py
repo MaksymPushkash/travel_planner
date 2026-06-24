@@ -9,13 +9,11 @@ class Settings(BaseSettings):
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
 
     ART_INSTITUTE_API_BASE_URL: str = "https://api.artic.edu/api/v1"
-    
+
     model_config = SettingsConfigDict(
         env_file=".env",
         extra="ignore",
     )
 
 
-settings = Settings() # pyright: ignore[reportCallIssue]
-
-
+settings = Settings()  # pyright: ignore[reportCallIssue]

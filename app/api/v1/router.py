@@ -21,5 +21,3 @@ api_router.include_router(
     prefix="/projects",
     tags=["project places"],
 )
-
-

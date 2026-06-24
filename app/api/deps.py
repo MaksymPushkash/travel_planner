@@ -22,7 +22,7 @@ async def get_current_user(
     token: str = Depends(oauth2_scheme),
     db: AsyncSession = Depends(get_db),
 ) -> User:
-    
+
     user_id = decode_access_token(token)
 
     if user_id is None:
@@ -34,4 +34,3 @@ async def get_current_user(
         raise InvalidCredentialsError()
 
     return user
-

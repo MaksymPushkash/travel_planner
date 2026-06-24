@@ -47,6 +47,3 @@ async def login_for_swagger(
 @router.get("/me", response_model=UserRead)
 async def me(current_user: User = Depends(get_current_user)):
     return current_user
-
-
-

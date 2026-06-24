@@ -29,7 +29,7 @@ class ProjectPlaceService:
         user_id: int,
         data: ProjectPlaceCreate,
     ) -> ProjectPlace:
-        
+
         project = await self.projects.get_by_id_for_user(
             project_id=project_id,
             user_id=user_id,
@@ -72,13 +72,12 @@ class ProjectPlaceService:
 
         return place
 
-
     async def list_places(
         self,
         project_id: int,
         user_id: int,
     ) -> list[ProjectPlace]:
-        
+
         project = await self.projects.get_by_id_for_user(
             project_id=project_id,
             user_id=user_id,
@@ -89,14 +88,13 @@ class ProjectPlaceService:
 
         return await self.places.list_by_project(project_id)
 
-
     async def get_place(
         self,
         project_id: int,
         place_id: int,
         user_id: int,
     ) -> ProjectPlace:
-        
+
         project = await self.projects.get_by_id_for_user(
             project_id=project_id,
             user_id=user_id,
@@ -115,7 +113,6 @@ class ProjectPlaceService:
 
         return place
 
-
     async def update_place(
         self,
         project_id: int,
@@ -123,7 +120,7 @@ class ProjectPlaceService:
         user_id: int,
         data: ProjectPlaceUpdate,
     ) -> ProjectPlace:
-        
+
         project = await self.projects.get_by_id_for_user(
             project_id=project_id,
             user_id=user_id,
@@ -155,6 +152,3 @@ class ProjectPlaceService:
         await self.db.refresh(place)
 
         return place
-
-
-

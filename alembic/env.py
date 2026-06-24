@@ -33,6 +33,7 @@ target_metadata = Base.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
+
 def get_database_url() -> str:
     return settings.DATABASE_URL.replace("%", "%%")
 
@@ -71,7 +72,6 @@ def do_run_migrations(connection: Connection) -> None:
 
     with context.begin_transaction():
         context.run_migrations()
-
 
 
 async def run_migrations_online() -> None:

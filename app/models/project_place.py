@@ -54,7 +54,3 @@ class ProjectPlace(Base):
     )
 
     project = relationship("TravelProject", back_populates="places")
-
-
-
-    

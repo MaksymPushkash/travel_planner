@@ -26,7 +26,7 @@ class ProjectService:
         data: TravelProjectCreate,
         user_id: int,
     ) -> TravelProject:
-        
+
         external_ids = [place.external_place_id for place in data.places]
 
         if len(external_ids) != len(set(external_ids)):
@@ -35,14 +35,10 @@ class ProjectService:
         artworks = []
 
         for place_data in data.places:
-            artwork = await self.art_client.get_artwork_by_id(
-                place_data.external_place_id
-            )
+            artwork = await self.art_client.get_artwork_by_id(place_data.external_place_id)
 
             if artwork is None:
-                raise ExternalPlaceNotFoundError(
-                    f"Place {place_data.external_place_id} not found in external API"
-                )
+                raise ExternalPlaceNotFoundError(f"Place {place_data.external_place_id} not found in external API")
 
             artworks.append((place_data, artwork))
 
@@ -71,17 +67,15 @@ class ProjectService:
 
         return await self.get_project(project.id, user_id)
 
-
     async def list_projects(self, user_id: int) -> list[TravelProject]:
         return await self.projects.list_by_user(user_id)
-
 
     async def get_project(
         self,
         project_id: int,
         user_id: int,
     ) -> TravelProject:
-        
+
         project = await self.projects.get_detail_for_user(
             project_id=project_id,
             user_id=user_id,
@@ -92,14 +86,13 @@ class ProjectService:
 
         return project
 
-
     async def update_project(
         self,
         project_id: int,
         user_id: int,
         data: TravelProjectUpdate,
     ) -> TravelProject:
-        
+
         project = await self.projects.get_by_id_for_user(
             project_id=project_id,
             user_id=user_id,
@@ -117,13 +110,12 @@ class ProjectService:
 
         return project
 
-
     async def delete_project(
         self,
         project_id: int,
         user_id: int,
     ) -> None:
-        
+
         project = await self.projects.get_by_id_for_user(
             project_id=project_id,
             user_id=user_id,
@@ -139,7 +131,3 @@ class ProjectService:
 
         await self.projects.delete(project)
         await self.db.commit()
-
-
-
-

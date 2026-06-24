@@ -71,6 +71,3 @@ async def update_place(
         user_id=current_user.id,
         data=data,
     )
-
-
-

@@ -25,7 +25,6 @@ def register_exception_handlers(app: FastAPI) -> None:
             content={"detail": exc.message},
         )
 
-
     @app.exception_handler(InvalidCredentialsError)
     async def invalid_credentials_handler(
         request: Request,
@@ -35,7 +34,6 @@ def register_exception_handlers(app: FastAPI) -> None:
             status_code=status.HTTP_401_UNAUTHORIZED,
             content={"detail": exc.message},
         )
-
 
     @app.exception_handler(ProjectNotFoundError)
     async def project_not_found_handler(
@@ -47,7 +45,6 @@ def register_exception_handlers(app: FastAPI) -> None:
             content={"detail": exc.message},
         )
 
-
     @app.exception_handler(PlaceNotFoundError)
     async def place_not_found_handler(
         request: Request,
@@ -57,7 +54,6 @@ def register_exception_handlers(app: FastAPI) -> None:
             status_code=status.HTTP_404_NOT_FOUND,
             content={"detail": exc.message},
         )
-
 
     @app.exception_handler(ExternalPlaceNotFoundError)
     async def external_place_not_found_handler(
@@ -69,7 +65,6 @@ def register_exception_handlers(app: FastAPI) -> None:
             content={"detail": exc.message},
         )
 
-
     @app.exception_handler(DuplicatePlaceError)
     async def duplicate_place_handler(
         request: Request,
@@ -79,7 +74,6 @@ def register_exception_handlers(app: FastAPI) -> None:
             status_code=status.HTTP_409_CONFLICT,
             content={"detail": exc.message},
         )
-
 
     @app.exception_handler(ProjectPlacesLimitError)
     async def project_places_limit_handler(
@@ -91,7 +85,6 @@ def register_exception_handlers(app: FastAPI) -> None:
             content={"detail": exc.message},
         )
 
-
     @app.exception_handler(ProjectDeleteForbiddenError)
     async def project_delete_forbidden_handler(
         request: Request,
@@ -102,7 +95,6 @@ def register_exception_handlers(app: FastAPI) -> None:
             content={"detail": exc.message},
         )
 
-
     @app.exception_handler(InvalidProjectPlacesError)
     async def invalid_project_places_handler(
         request: Request,
@@ -112,6 +104,3 @@ def register_exception_handlers(app: FastAPI) -> None:
             status_code=status.HTTP_400_BAD_REQUEST,
             content={"detail": exc.message},
         )
-
-
-

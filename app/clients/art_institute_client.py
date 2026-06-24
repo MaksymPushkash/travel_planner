@@ -35,7 +35,3 @@ class ArtInstituteClient:
             "artist_title": data.get("artist_title"),
             "image_url": image_url,
         }
-
-
-
-    

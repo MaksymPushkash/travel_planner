@@ -21,9 +21,7 @@ def verify_password(plain_password: str, password_hash: str) -> bool:
 
 
 def create_access_token(subject: str) -> str:
-    expire = datetime.now(UTC) + timedelta(
-        minutes=settings.JWT_ACCESS_TOKEN_EXPIRE_MINUTES
-    )
+    expire = datetime.now(UTC) + timedelta(minutes=settings.JWT_ACCESS_TOKEN_EXPIRE_MINUTES)
 
     payload = {
         "sub": subject,
@@ -48,5 +46,3 @@ def decode_access_token(token: str) -> str | None:
         return subject
     except JWTError:
         return None
-
-        

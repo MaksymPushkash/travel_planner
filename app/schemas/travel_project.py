@@ -10,10 +10,7 @@ class TravelProjectCreate(BaseModel):
     description: str | None = Field(default=None, max_length=2000)
     start_date: date | None = None
 
-    places: list[ProjectPlaceCreate] = Field(
-        default_factory=list,
-        max_length=10,
-    )
+    places: list[ProjectPlaceCreate] = Field(min_length=1, max_length=10)
 
 
 class TravelProjectUpdate(BaseModel):
@@ -39,6 +36,3 @@ class TravelProjectRead(BaseModel):
 
 class TravelProjectDetail(TravelProjectRead):
     places: list[ProjectPlaceRead] = Field(default_factory=list)
-
-
-

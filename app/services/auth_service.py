@@ -31,7 +31,6 @@ class AuthService:
 
         return user
 
-
     async def login(self, data: LoginRequest) -> TokenResponse:
         user = await self.users.get_by_email(data.email)
 
@@ -41,5 +40,3 @@ class AuthService:
         access_token = create_access_token(subject=str(user.id))
 
         return TokenResponse(access_token=access_token)
-
-

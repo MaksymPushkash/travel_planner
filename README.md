@@ -30,6 +30,11 @@ Simple FastAPI application for managing travel projects and places from the Art 
 * Prevent adding the same place twice to one project
 * Maximum 10 places per project
 
+
+* ruff format --check passes
+* ruff check passes
+* mypy passes
+
 ## Project Structure
 
 ```text
@@ -174,7 +179,12 @@ curl -X POST http://localhost:8000/api/v1/projects \
     "name": "Chicago Trip",
     "description": "Art places I want to visit",
     "start_date": "2026-07-01",
-    "places": []
+    "places": [
+      {
+        "external_place_id": 129884,
+        "notes": "I want to visit this artwork"
+      }
+    ]
   }'
 ```
 

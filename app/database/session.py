@@ -14,5 +14,3 @@ AsyncSessionLocal = async_sessionmaker(
     autocommit=False,
     expire_on_commit=False,
 )
-
-

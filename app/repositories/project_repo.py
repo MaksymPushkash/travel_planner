@@ -18,20 +18,16 @@ class ProjectRepository:
         await self.db.refresh(project)
         return project
 
-
     async def get_by_id(self, project_id: int) -> TravelProject | None:
-        result = await self.db.execute(
-            select(TravelProject).where(TravelProject.id == project_id)
-        )
+        result = await self.db.execute(select(TravelProject).where(TravelProject.id == project_id))
         return result.scalar_one_or_none()
-
 
     async def get_by_id_for_user(
         self,
         project_id: int,
         user_id: int,
     ) -> TravelProject | None:
-        
+
         result = await self.db.execute(
             select(TravelProject).where(
                 TravelProject.id == project_id,
@@ -40,13 +36,12 @@ class ProjectRepository:
         )
         return result.scalar_one_or_none()
 
-
     async def get_detail_for_user(
         self,
         project_id: int,
         user_id: int,
     ) -> TravelProject | None:
-        
+
         result = await self.db.execute(
             select(TravelProject)
             .options(selectinload(TravelProject.places))
@@ -57,22 +52,18 @@ class ProjectRepository:
         )
         return result.scalar_one_or_none()
 
-
     async def list_by_user(self, user_id: int) -> list[TravelProject]:
         result = await self.db.execute(
-            select(TravelProject)
-            .where(TravelProject.user_id == user_id)
-            .order_by(TravelProject.created_at.desc())
+            select(TravelProject).where(TravelProject.user_id == user_id).order_by(TravelProject.created_at.desc())
         )
         return list(result.scalars().all())
-
 
     async def update(
         self,
         project: TravelProject,
         data: dict[str, Any],
     ) -> TravelProject:
-        
+
         for field, value in data.items():
             setattr(project, field, value)
 
@@ -81,11 +72,9 @@ class ProjectRepository:
 
         return project
 
-
     async def delete(self, project: TravelProject) -> None:
         await self.db.delete(project)
         await self.db.flush()
-
 
     async def has_visited_places(self, project_id: int) -> bool:
         result = await self.db.execute(
@@ -98,19 +87,15 @@ class ProjectRepository:
         )
         return result.scalar_one_or_none() is not None
 
-
     async def set_completed(
         self,
         project: TravelProject,
         is_completed: bool,
     ) -> TravelProject:
-        
+
         project.is_completed = is_completed
 
         await self.db.flush()
         await self.db.refresh(project)
 
         return project
-
-
-
