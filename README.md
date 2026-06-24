@@ -6,13 +6,16 @@ Simple FastAPI application for managing travel projects and places from the Art 
 
 * Python
 * FastAPI
-* PostgreSQL
+* PostgreSQL / PgAdmin
 * SQLAlchemy
 * Alembic
 * Docker / Docker Compose
 * JWT Authentication
 * Pydantic
 * HTTPX
+* uv
+* ruff
+* mypy
 
 ## Features
 
